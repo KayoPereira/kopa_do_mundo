@@ -64,3 +64,34 @@ class TeamViewSet(ModelViewSet):
         return Response(
             serializer.data, status=status.HTTP_201_CREATED, headers=headers
         )
+
+    def destroy(self, request, *args, **kwargs):
+        try:
+            team = self.get_object()
+        except Exception:
+            return Response(
+                {"message": "Team not found"}, status=status.HTTP_404_NOT_FOUND
+            )
+
+        return super().destroy(request, *args, **kwargs)
+
+    def retrieve(self, request, *args, **kwargs):
+        try:
+            team = self.get_object()
+        except Exception:
+            return Response(
+                {"message": "Team not found"}, status=status.HTTP_404_NOT_FOUND
+            )
+
+        serializer = self.get_serializer(team)
+        return Response(serializer.data)
+
+    def update(self, request, *args, **kwargs):
+        try:
+            team = self.get_object()
+        except Exception:
+            return Response(
+                {"message": "Team not found"},
+                status=status.HTTP_404_NOT_FOUND,
+            )
+        return super().update(request, *args, **kwargs)
