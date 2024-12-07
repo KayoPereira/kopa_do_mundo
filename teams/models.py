@@ -11,7 +11,7 @@ class Team(models.Model):
     objects = models.Manager()
 
     def __repr__(self):
-        return f"<[{self.name} - {self.fifa_code}]>"
+        return f"<[{self.id}] {self.name} - {self.fifa_code}>"
 
     def __str__(self):
         return str(self.name)
